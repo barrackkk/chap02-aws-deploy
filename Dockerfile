@@ -27,6 +27,9 @@ FROM eclipse-temurin:17-jre-alpine
 # 작업 디렉토리 설정
 WORKDIR /app
 
+#Alphine Linux
+RUN apk add --no-ache curl
+
 # 빌드된 JAR 파일 복사
 COPY --from=builder /app/build/libs/*.jar app.jar
 
@@ -59,4 +62,4 @@ COPY --from=builder /app/src/main/resources/static /app/static
 EXPOSE 8080
 
 # 애플리케이션 실행
-ENTRYPOINT ["java", "-jar", "app.jar"] 
+ENTRYPOINT ["java", "-jar", "app.jar"]
